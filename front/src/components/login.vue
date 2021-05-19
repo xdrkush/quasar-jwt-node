@@ -9,7 +9,7 @@
       <q-tab name="register" icon="fas fa-address-card" label="Register" />
     </q-tabs>
 
-    <p v-if='getFlash' class="text-h6"> {{ getFlash }} </p>
+    <p v-if='getFlashAuth' class="text-h6"> {{ getFlashAuth }} </p>
 
     <q-tab-panels
       v-model="tab"
@@ -187,7 +187,7 @@ export default {
     ...mapActions("auth", ["httpFormLogin", "httpFormRegister"])
   },
   computed: {
-    ...mapGetters('auth', ['getFlash'])
+    ...mapGetters('auth', ['getFlashAuth'])
   }
 }
 </script>

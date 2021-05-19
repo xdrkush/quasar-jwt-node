@@ -4,12 +4,20 @@ const
     router = express.Router();
 
 // Controllers
-const authControllers = require('./controllers/auth')
+const authControllers = require('./controllers/authControllers'),
+    userControllers = require('./controllers/userControllers');
 
 // Middleware
 const checkJWT = require('./middleware/jwt')
 
 // Routes
+// Check api (status)
+router.route('/checkapi')
+    .post(authControllers.checkAPI)
+
+// Check api (status)
+router.route('/checksession')
+    .post(checkJWT, authControllers.checkSession)
 
 // Login
 router.route('/login')
@@ -24,10 +32,12 @@ router.route('/lostpassword')
     .post(authControllers.lostPassword)
 
 // Get Liste Users
-router.route('/getlistusers/:token')
-    .get(checkJWT, authControllers.getListUsers)
+router.route('/getlistusers')
+    .post(checkJWT, userControllers.getListUsers)
 
+// Get User ID
 router.route('/getuser/:id')
-    .get(authControllers.getUser)
+    .post(checkJWT, userControllers.getUser)
+
 
 module.exports = router

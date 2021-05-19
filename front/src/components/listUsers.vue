@@ -27,11 +27,10 @@ export default {
       changeId (id) {
         this.httpGetUser(id)
       },
-      ...mapActions('auth', ['httpGetListUsers']),
-      ...mapActions('user', ['httpGetUser'])
+      ...mapActions('user', ['httpGetUser', 'httpGetListUsers'])
     },
     computed: {
-        ...mapGetters('auth', ['getListUsers'])
+        ...mapGetters('user', ['getListUsers'])
     },
     props: {
       title: String
